@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>encore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">   
+</head>
+
+
+<body>
+
+    <header class="landing-header">
+        <div class="landing-logo">
+            <span>✦</span>
+            <em>encore</em>
+        </div>
+
+        <nav class="landing-nav">
+            <a href="index.html" class="nav-item active">
+                Home
+            </a>
+
+            <a href="../Website 3/pick-music.html" class="nav-item">
+                Pick Your Music
+            </a>
+
+            <a href="../Website 2/music-statistic.html" class="nav-item">
+                Music Statistic
+            </a>
+        </nav>
+
+
+        <!-- profile button / modal -->
+        <div class="profile-container">
+            <button class="profile-button" id="profileButton" aria-label="Account menu" aria-expanded="false">
+                <span id="profileButtonIcon">♙</span>
+            </button>
+            <div class="profile-menu" id="profileMenu" role="menu">
+                <div class="profile-menu-header">
+                    <div class="profile-avatar" id="profileAvatar">A</div>
+                    <div class="profile-identity">
+                        <div class="profile-name-row">
+                            <p id="profileUsername"></p>
+                            <span class="profile-role-badge" id="profileRoleBadge"></span>
+                        </div>
+                        <p id="profileEmail"></p>
+                    </div>
+                </div>
+
+                <button type="button" id="logoutButton">
+                    Log out
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+
+    <main>
+            <section class="hero-section">
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span>✦</span> Discover. Listen. Feel.
+                        </div>
+                        <h1>
+                            Discover the <span class="muted">music</span><br>
+                            that fits <em>your</em> mood.
+                        </h1>
+                        <p>Explore songs, artists, and the story behind the music.</p>
+                        <div class="hero-buttons">
+                            <button class="hero-login" id="loginButton" onclick="window.location.href='login.html'">
+                                Log in <span>→</span>
+                            </button>
+                            <button class="hero-signup" id="signupButton" onclick="window.location.href='login.html'">
+                                Sign up
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="hero-orbit-graphic" aria-hidden="true">
+                        <div class="orbit-ring orbit-outer"></div>
+                        <div class="orbit-ring orbit-inner"></div>
+                        <span class="hero-star star-1">✦</span>
+                        <span class="hero-star star-2">✦</span>
+                        <span class="hero-star star-3">✦</span>
+                        <span class="hero-star star-4">✦</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="preview-section">
+                <div class="section-heading">
+
+                    <div class="section-title-group">
+                        <button
+                            type="button"
+                            id="backToPlaylistsButton"
+                            class="back-to-playlists-button"
+                            aria-label="Back to My Playlists"
+                            title="Back to My Playlists"
+                            style="display: none;">
+                            ←
+                        </button>
+
+                        <h2 id="songsHeading">
+                            <span>✦</span>
+                            <span id="songSectionTitle">All Songs</span>
+                        </h2>
+                    </div>
+
+                    <div class="section-actions">
+                        <button
+                            type="button"
+                            id="addSongButton"
+                            class="add-song-button"
+                            style="display: none;">
+                            + Add Song
+                        </button>
+
+                        <select id="song-filter">
+                            <option value="all">All Songs</option>
+                            <option value="favorites">Favorites</option>
+                            <option value="playlists">My Playlists</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="songList" class="landing-song-list">
+                </div>
+
+            </section>
+
+            <!-- ADMIN ADD SONG MODAL -->
+        <div class="admin-modal-overlay" id="adminModal">
+            <div class="admin-modal">
+                <button
+                    type="button"
+                    class="admin-modal-close"
+                    id="adminModalClose"
+                    aria-label="Close Add Song Modal">
+                    ×
+                </button>
+
+                <h2 id="adminModalTitle">✦ Add New Song</h2>
+                <p id="adminModalSubtitle">Add a new track to the encore music database.</p>
+
+                <form id="adminSongForm">
+                    <input id="adminTitle" type="text" placeholder="Title" required>
+                    <input id="adminAlbum" type="text" placeholder="Album">
+                    <input id="adminArtist" type="text" placeholder="Artist" required>
+                    <input id="adminFeaturedArtist" type="text" placeholder="Featured Artist">
+                    <input id="adminWriters" type="text" placeholder="Writers" required>
+                    <input id="adminProducers" type="text" placeholder="Producers" required>
+                    <input id="adminYear" type="number" placeholder="Year" required>
+                    <input id="adminGenre" type="text" placeholder="Genre" required>
+                    <input id="adminLanguage" type="text" placeholder="Language">
+                    <input id="adminPopularity" type="text" placeholder="Popularity" required>
+                    <input id="adminRating" type="text" placeholder="Rating" required>
+                    <input id="adminSpotifyUrl" type="url" placeholder="Spotify URL" required>
+                    <input id="adminImageUrl" type="url" placeholder="Image URL" required>
+                    <input id="adminAudioUrl" type="url" placeholder="Audio URL" required>
+                    <input id="adminMood" type="text" placeholder="Mood (comma separated)" required>
+                    <input id="adminEnergy" type="text" placeholder="Energy" required>
+                    <input id="adminVibe" type="text" placeholder="Vibe (comma separated)" required>
+                    <input id="adminBestFor" type="text" placeholder="Best For (comma separated)" required>
+                    <input id="adminDuration" type="text" placeholder="Duration" required>
+                    <textarea id="adminDescription" placeholder="Description" required></textarea>
+
+                    <button type="submit" id="adminSubmitButton" class="admin-submit-button">
+                        Add Music
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <section class="landing-cta" id="loginCTA">
+            <div>
+                <span class="cta-star">✦</span>
+
+                <h2>
+                    Sign in to unlock full access
+                    <br>
+                    to all songs and features.
+                </h2>
+
+                <p>
+                    Your music journey starts here.
+                </p>
+            </div>
+
+            <button class="cta-login" onclick="window.location.href='login.html'">
+                Log in
+                <span>→</span>
+            </button>
+
+        </section>
+
+    </main>
+
+        <div class="song-preview-overlay">
+
+
+            <div class="song-preview">
+
+                <div class="preview-left">
+                    <img id="modalImage" src="" alt="Album Cover">
+                    <span class="preview-year" id="previewYear"></span>
+                    <h2 id="previewTitle"></h2>
+                    <p class="preview-artist" id="previewArtist"></p>
+                    <p class="preview-album" id="previewAlbum"></p>
+
+                <div class="song-stats">
+                    <div>
+                        <span>★</span>
+                        <strong id="previewRating"></strong>
+                        <small>Listener Score</small>
+                    </div>
+
+                    <div>
+                        <strong id="previewStreams"></strong>
+                        <small>Spotify Streams</small>
+                    </div>
+                </div>
+        </div>
+
+        <div class="preview-divider"></div>
+        <div class="preview-right">
+            <button class="preview-close">×</button>
+            
+            <div class="preview-row">
+                <span>Album</span>
+                <p id="previewAlbumInfo"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Featured Artist</span>
+                <p id="previewFeatured"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Writers</span>
+                <p id="previewWriters"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Producers</span>
+                <p id="previewProducers"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Genre</span>
+                <p id="previewGenre"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Language</span>
+                <p id="previewLanguage"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Duration</span>
+                <p id="previewDuration"></p>
+            </div>
+
+            <div class="preview-row">
+                <span>Popularity</span>
+                <p id="previewPopularity"></p>
+            </div>
+
+            <div class="preview-description">
+                <span>Description</span>
+                <p id="previewDescription"></p>
+            </div>
+
+            <div class="preview-actions">
+                <button class="preview-spotify" id="spotifyButton">Open on Spotify</button>
+                <button
+                    type="button"
+                    class="preview-edit"
+                    id="editSongButton"
+                    style="display: none;">
+                    Edit Song
+                </button>
+                <button
+                    type="button"
+                    class="preview-delete"
+                    id="deleteSongButton"
+                    style="display: none;">
+                    Delete Song
+                </button>
+            </div>
+                </div>
+            </div>
+        </div>
+    
+         <!-- PLAYLIST MODAL -->
+        <div class="playlist-modal-overlay" id="playlistModal">
+            <div class="playlist-modal">
+                <button
+                    type="button"
+                    class="playlist-modal-close"
+                    id="playlistModalClose">
+                    ×
+                </button>
+
+                <h2>Add to Playlist</h2>
+                <p>Select a playlist for this song.</p>
+
+                <div id="playlistList"></div>
+
+                <button
+                    type="button"
+                    class="create-playlist-button"
+                    id="createPlaylistButton">
+                    + Create New Playlist
+                </button>
+            </div>
+        </div>
+
+        <!-- CREATE PLAYLIST MODAL -->
+        <div class="create-playlist-overlay" id="createPlaylistModal">
+            <div class="create-playlist-modal">
+
+                <button
+                    type="button"
+                    class="create-playlist-close"
+                    id="createPlaylistClose">
+                    ×
+                </button>
+
+                <h2>Create Playlist</h2>
+                <p>Give your playlist a name.</p>
+
+                <input
+                    type="text"
+                    id="playlistNameInput"
+                    placeholder="Playlist name"
+                    maxlength="50">
+
+                <input
+                    type="text"
+                    id="playlistDescriptionInput"
+                    placeholder="Description (optional)"
+                    maxlength="100">
+
+                <button
+                    type="button"
+                    id="savePlaylistButton"
+                    class="save-playlist-button">
+                    Create Playlist
+                </button>
+
+            </div>
+        </div>
+
+        <!-- CONFIRM DELETE MODAL -->
+        <div class="confirm-modal-overlay" id="confirmModal" style="display: none;">
+            <div class="confirm-modal-card">
+                <button type="button" class="confirm-modal-close" id="confirmModalClose" aria-label="Close">✕</button>
+                <span class="confirm-modal-eyebrow">CONFIRM ACTION</span>
+                <h3 class="confirm-modal-title" id="confirmModalTitle">Delete Item?</h3>
+                <p class="confirm-modal-message" id="confirmModalMessage">
+                    Are you sure you want to permanently delete this item? This action cannot be undone.
+                </p>
+                <div class="confirm-modal-actions">
+                    <button type="button" class="confirm-btn-cancel" id="confirmCancelButton">Cancel</button>
+                    <button type="button" class="confirm-btn-danger" id="confirmProceedButton">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- playlist success message -->
+         <div class="toast-notification" id="toastNotification" role="status" aria-live="polite">
+            <span class="toast-icon" id="toastIcon">✦</span>
+            <span class="toast-message" id="toastMessage">Song added to playlist!</span>
+        </div>
+
+    <audio id="audioPlayer"></audio>
+    <script src="app.js"></script>
+
+</body>
+</html>
